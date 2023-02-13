@@ -15,15 +15,11 @@ const io = new Server(httpServer, {
     }
 });
 io.on("connection", (socket) => {
-    // const user = {
-    //     socket_id: "",
-    //     user_name: ""
-    // }
-    // socket.on("initiate", ({socket_id, user_name}) => {
-    //     user.socket_id = socket_id;
-    //     user.user_name = user_name;
-    //     console.log(chalk.cyanBright(`${user_name} (${socket_id}) has connected.`));
-    // });
+
+    
+    socket.on('message', (data) => {
+        console.log(data);
+      });
 
     console.log(`${socket.id} just connected.`);
     socket.on("disconnect", () => {
