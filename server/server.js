@@ -11,9 +11,10 @@ app.use(cors());
 
 const socketIO = new Server(httpServer, {
     cors: {
-        origin: ["http://127.0.0.1:3000", "http://localhost:3000"]
+        origin: ["http://127.0.0.1:3000", "http://localhost:3000", "http://10.2.19.151:3000"]
     }
 });
+
 let users = [];
 
 socketIO.on('connection', (socket) => {
@@ -28,7 +29,9 @@ socketIO.on('connection', (socket) => {
   socket.on('newUser', (data) => {
     //Adds the new user to the list of users
     users.push(data);
-    // console.log(users);
+
+    console.log(users);
+
     //Sends the list of users to the client
     socketIO.emit('newUserResponse', users);
   });
