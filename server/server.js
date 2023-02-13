@@ -11,7 +11,7 @@ app.use(cors());
 
 const socketIO = new Server(httpServer, {
     cors: {
-        origin: ["http://127.0.0.1:3000", "http://localhost:3000", "http://10.2.19.151:3000"]
+        origin: true
     }
 });
 
@@ -23,7 +23,13 @@ socketIO.on('connection', (socket) => {
     socketIO.emit('messageResponse', data);
   });
 
+  //Handles typing response 
   socket.on('typing', (data) => socket.broadcast.emit('typingResponse', data));
+
+  //Handles idle event
+  socket.on('notTyping', (data) => {
+    socket.broadcast.emit('typingResponse', data);
+  });
   
   //Listens when a new user joins the server
   socket.on('newUser', (data) => {
