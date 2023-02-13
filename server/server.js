@@ -16,10 +16,10 @@ const io = new Server(httpServer, {
 });
 io.on("connection", (socket) => {
 
-    
+
     socket.on('message', (data) => {
-        console.log(data);
-      });
+        socketIO.emit('messageResponse', data);
+    });
 
     console.log(`${socket.id} just connected.`);
     socket.on("disconnect", () => {
