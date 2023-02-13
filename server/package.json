@@ -1,0 +1,27 @@
+{
+  "name": "dexter-server",
+  "version": "1.0.0",
+  "description": "Dexter Server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "server",
+    "socketio",
+    "express"
+  ],
+  "author": "Ushnish Dey Bhowmik",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.2.0",
+    "express": "^4.18.2",
+    "socket.io": "^4.6.0",
+    "socket.io-client": "^4.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "type": "module"
+}
