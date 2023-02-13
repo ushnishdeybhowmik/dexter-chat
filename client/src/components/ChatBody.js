@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const ChatBody = ({ messages }) => {
+const ChatBody = ({ messages, typingStatus, lastMessageRef }) => {
   const navigate = useNavigate();
 
   const handleLeaveChat = () => {
