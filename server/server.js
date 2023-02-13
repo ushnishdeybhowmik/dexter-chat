@@ -7,6 +7,8 @@ import cors from 'cors';
 const app = express();
 const httpServer = createServer(app);
 
+const PORT = process.env.PORT || 4000;
+
 app.use(cors());
 
 const socketIO = new Server(httpServer, {
@@ -53,6 +55,6 @@ socketIO.on('connection', (socket) => {
   });
 });
 
-httpServer.listen(4000, () => {
-    console.log(chalk.green(`🦊 Dexter is LIVE on http://127.0.0.1:4000`));
+httpServer.listen(PORT, () => {
+    console.log(chalk.green(`🦊 Dexter is LIVE`));
 });
