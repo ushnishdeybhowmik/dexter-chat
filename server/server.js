@@ -9,24 +9,38 @@ const httpServer = createServer(app);
 
 app.use(cors());
 
-const io = new Server(httpServer, {
+const socketIO = new Server(httpServer, {
     cors: {
         origin: ["http://127.0.0.1:3000", "http://localhost:3000"]
     }
 });
-io.on("connection", (socket) => {
+let users = [];
 
+socketIO.on('connection', (socket) => {
+  console.log(`⚡: ${socket.id} user just connected!`);
+  socket.on('message', (data) => {
+    socketIO.emit('messageResponse', data);
+  });
 
-    socket.on('message', (data) => {
-        socketIO.emit('messageResponse', data);
-    });
+  //Listens when a new user joins the server
+  socket.on('newUser', (data) => {
+    //Adds the new user to the list of users
+    users.push(data);
+    // console.log(users);
+    //Sends the list of users to the client
+    socketIO.emit('newUserResponse', users);
+  });
 
-    console.log(`${socket.id} just connected.`);
-    socket.on("disconnect", () => {
-        console.log(`${socket.id} disconnected.`);
-    })
-})
-
+  socket.on('disconnect', () => {
+    console.log('🔥: A user disconnected');
+    //Updates the list of users when a user disconnects from the server
+    users = users.filter((user) => user.socketID !== socket.id);
+    // console.log(users);
+    //Sends the list of users to the client
+    socketIO.emit('newUserResponse', users);
+    socket.disconnect();
+  });
+});
 
 httpServer.listen(4000, () => {
     console.log(chalk.green(`🦊 Dexter is LIVE on http://127.0.0.1:4000`));
