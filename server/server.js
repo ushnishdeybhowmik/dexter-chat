@@ -7,13 +7,16 @@ import cors from 'cors';
 const app = express();
 const httpServer = createServer(app);
 
+const PORT = process.env.PORT || 4000;
+
 app.use(cors());
 
 const socketIO = new Server(httpServer, {
     cors: {
-        origin: ["http://127.0.0.1:3000", "http://localhost:3000"]
+        origin: true
     }
 });
+
 let users = [];
 
 socketIO.on('connection', (socket) => {
@@ -22,13 +25,21 @@ socketIO.on('connection', (socket) => {
     socketIO.emit('messageResponse', data);
   });
 
+  //Handles typing response 
   socket.on('typing', (data) => socket.broadcast.emit('typingResponse', data));
+
+  //Handles idle event
+  socket.on('notTyping', (data) => {
+    socket.broadcast.emit('typingResponse', data);
+  });
   
   //Listens when a new user joins the server
   socket.on('newUser', (data) => {
     //Adds the new user to the list of users
     users.push(data);
-    // console.log(users);
+
+    console.log(users);
+
     //Sends the list of users to the client
     socketIO.emit('newUserResponse', users);
   });
@@ -44,6 +55,6 @@ socketIO.on('connection', (socket) => {
   });
 });
 
-httpServer.listen(4000, () => {
-    console.log(chalk.green(`🦊 Dexter is LIVE on http://127.0.0.1:4000`));
+httpServer.listen(PORT, () => {
+    console.log(chalk.green(`🦊 Dexter is LIVE`));
 });
