@@ -1,29 +1,10 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './components/Home';
-import ChatPage from './components/ChatPage';
-import socketIO from 'socket.io-client';
-import React, {useState} from 'react';
-const URL = process.env.URL || 'http://10.2.19.151:4000';
-const socket = socketIO.connect(URL);
-function App() {
+import React from 'react';
 
-  const [user, setUser] = useState({});
 
+const App = () => {
   return (
-    <BrowserRouter>
-      <div>
-        <Routes>
-          {
-            user === {} ? <Route path="/auth" element={<Login setUser={setUser}/>}></Route> :
-            <>
-              <Route path="/" element={<Home socket={socket} user={user} />}></Route>
-              <Route path="/chat" element={<ChatPage socket={socket} user={user} />}></Route>
-            </>
-          }
-        </Routes>
-      </div>
-    </BrowserRouter>
-  );
+    <div>App</div>
+  )
 }
 
-export default App;
+export default App
