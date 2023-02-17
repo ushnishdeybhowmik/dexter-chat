@@ -3,7 +3,7 @@ import ChatBar from './ChatBar';
 import ChatBody from './ChatBody';
 import ChatFooter from './ChatFooter';
 
-const ChatPage = ({socket}) => {
+const ChatPage = ({socket, user}) => {
   const [messages, setMessages] = useState([]);
   const [typingStatus, setTypingStatus] = useState('');
   const lastMessageRef = useRef(null);

@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+//import { useNavigate } from 'react-router-dom';
 
 const Login = ({setUser}) => {
 
@@ -15,6 +16,7 @@ const Login = ({setUser}) => {
     //if(userAuth(userLocal, pwdLocal)){
     //  setUser(userLocal);
     //  style statement
+    //  useNavigate('/chat')
     //}
     //else {
     //  style statement
