@@ -14,7 +14,7 @@ function App() {
       <div>
         <Routes>
           {
-            user === {} ? <Route path="/auth" element={<Login setUser={setUser} />}></Route> :
+            user === {} ? <Route path="/auth" element={<Login setUser={setUser}/>}></Route> :
             <>
               <Route path="/" element={<Home socket={socket} />}></Route>
               <Route path="/chat" element={<ChatPage socket={socket}/>}></Route>
