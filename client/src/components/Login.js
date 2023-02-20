@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 //import { useNavigate } from 'react-router-dom';
+//import SOCKET from 'socket.io-client';
 
-const Login = ({setUser}) => {
+const Login = ({setUser, setSocket}) => {
 
   const [userLocal, setUserLocal] = useState('');
   const [pwdLocal, setPwdLocal] = useState('');
-
+  const URL = process.env.URL || 'http://10.2.19.151:4000';
   function userAuth(username, pass){
     //getUser from MongoDB
     //return user.pwd === pass
@@ -14,9 +15,11 @@ const Login = ({setUser}) => {
   function handleSubmit(e) {
     e.preventDefault();
     //if(userAuth(userLocal, pwdLocal)){
-    //  setUser(userLocal);
+    //  socket = SOCKET.connect(url)
+    //  setSocket(socket);
+    //  setUser({name: userLocal, id: socket.id});
     //  style statement
-    //  useNavigate('/chat')
+    //  useNavigate(`user/${userLocal})
     //}
     //else {
     //  style statement

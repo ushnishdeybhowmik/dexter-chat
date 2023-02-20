@@ -7,7 +7,7 @@ const navigate = useNavigate();
 
 const App = () => {
 
-    const [user, setUser] = useState({name: '', id: '', socket: undefined});
+    const [user, setUser] = useState({name: '', id: ''});
     const [socket, setSocket] = useState();
     useEffect(() => {
         navigate(`/user/${user.name}`)
