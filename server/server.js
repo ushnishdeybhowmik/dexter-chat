@@ -23,13 +23,16 @@ const socketIO = new Server(httpServer, {
 });
 
 
-mongoose.connect(URI, {
-    useNewUrlParser : true,
-    useFindAndModify: true,
-    useUnifiedTopology: true
-});
 
-const db = mongoose.connection;
+/////////////////////////////////////////////////
+const db = mongoose.createConnection(URI, {
+  useNewUrlParser : true,
+  useFindAndModify: true,
+  useUnifiedTopology: true
+});
+////////////////////////////////////////////////
+
+
 
 let users = [];
 
