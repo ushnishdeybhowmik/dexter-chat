@@ -3,11 +3,16 @@ import chalk from 'chalk';
 import { createServer } from "http";
 import { Server } from "socket.io";
 import cors from 'cors';
+import mongoose from 'mongoose';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 const httpServer = createServer(app);
 
 const PORT = process.env.PORT || 4000;
+const URI = process.env.DBURL;
 
 app.use(cors());
 
@@ -16,6 +21,15 @@ const socketIO = new Server(httpServer, {
         origin: true
     }
 });
+
+
+mongoose.connect(URI, {
+    useNewUrlParser : true,
+    useFindAndModify: true,
+    useUnifiedTopology: true
+});
+
+const db = mongoose.connection;
 
 let users = [];
 
@@ -55,6 +69,8 @@ socketIO.on('connection', (socket) => {
   });
 });
 
-httpServer.listen(PORT, () => {
+db.once('open', () => {
+  httpServer.listen(PORT, () => {
     console.log(chalk.green(`🦊 Dexter is LIVE`));
-});
+  });
+})
