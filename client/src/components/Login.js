@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Box from '@mui/material/Box';
 //import { useNavigate } from 'react-router-dom';
 //import SOCKET from 'socket.io-client';
 
@@ -28,18 +29,32 @@ const Login = ({setUser, setSocket}) => {
     //}
   }
   return (
-    <div className="login-wrapper">
-        <div className="login-title">
-            User Login
-        </div>
-        <div className="login-formWrapper">
-            <form className="login-form" method="POST" onSubmit={e => handleSubmit(e)} id="loginForm">
-                <input name="username" className="login-input" onChange={(e) => setUserLocal(e.target.value)}></input>
-                <input name="password" type="password" className="login-password" onChange={(e) => setPwdLocal(e.target.value)}></input>
-            </form>
-              <button type="submit" form="loginForm" class="login-button" value="Submit">Submit</button>
-        </div>
-    </div>
+    // <div className="login-wrapper">
+    //     <div className="login-title">
+    //         User Login
+    //     </div>
+    //     <div className="login-formWrapper">
+    //         <form className="login-form" method="POST" onSubmit={e => handleSubmit(e)} id="loginForm">
+    //             <input name="username" className="login-input" onChange={(e) => setUserLocal(e.target.value)}></input>
+    //             <input name="password" type="password" className="login-password" onChange={(e) => setPwdLocal(e.target.value)}></input>
+    //         </form>
+    //           <button type="submit" form="loginForm" class="login-button" value="Submit">Submit</button>
+    //     </div>
+    // </div>
+
+    <Box
+      sx={{
+        width: 300,
+        height: 300,
+        backgroundColor: 'primary.dark',
+        '&:hover': {
+          backgroundColor: 'primary.main',
+          opacity: [0.9, 0.8, 0.7],
+        },
+      }}
+    />
+
+
   )
 }
 

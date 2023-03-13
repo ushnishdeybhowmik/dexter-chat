@@ -16,15 +16,17 @@ const URI = process.env.DBURL;
 
 app.use(cors());
 
+
+//////////////////////////////////////////// SOCKET.IO CONNECTION
 const socketIO = new Server(httpServer, {
     cors: {
         origin: true
     }
 });
+////////////////////////////////////////////
 
 
-
-/////////////////////////////////////////////////
+//////////////////////////////////////////////// DB CONNECTION
 const db = mongoose.createConnection(URI, {
   useNewUrlParser : true,
   useUnifiedTopology: true

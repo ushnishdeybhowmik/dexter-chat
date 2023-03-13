@@ -2,29 +2,22 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import {BrowserRouter, Route, Routes, useNavigate} from 'react-router-dom';
 import Login from './components/Login';
-
+import Home from './components/Home';
+ 
 
 
 const App = () => {
-    
-    const navigate = useNavigate();
     const [user, setUser] = useState({name: '', id: ''});
     const [socket, setSocket] = useState();
-    useEffect(() => {
-        navigate(`/user/${user.name}`)
-    }, [user]);
 
     return (
-        <BrowserRouter>
-            <Routes>
-
-                {
-                    user.name ? 
-                    <Route path='/login' element={<Login setUser={setUser} setSocket={setSocket}/>}></Route> :
-                    <Route path={`/user/${user.name}`} element={<Home user={user} socket={socket}/>}></Route>
-                }
-            </Routes>
-        </BrowserRouter>
+            <>
+            {
+                user.name ? 
+                <Home user={user} socket={socket}/> :
+                <Login setUser={setUser} setSocket={setSocket}/>
+            }
+            </>
     )
 }
 
