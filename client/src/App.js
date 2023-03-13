@@ -1,12 +1,13 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 import {BrowserRouter, Route, Routes, useNavigate} from 'react-router-dom';
+import Login from './components/Login';
 
 
-const navigate = useNavigate();
 
 const App = () => {
-
+    
+    const navigate = useNavigate();
     const [user, setUser] = useState({name: '', id: ''});
     const [socket, setSocket] = useState();
     useEffect(() => {

@@ -27,7 +27,6 @@ const socketIO = new Server(httpServer, {
 /////////////////////////////////////////////////
 const db = mongoose.createConnection(URI, {
   useNewUrlParser : true,
-  useFindAndModify: true,
   useUnifiedTopology: true
 });
 ////////////////////////////////////////////////
@@ -74,6 +73,6 @@ socketIO.on('connection', (socket) => {
 
 db.once('open', () => {
   httpServer.listen(PORT, () => {
-    console.log(chalk.green(`🦊 Dexter is LIVE`));
+    console.log(chalk.green(`🦊 Dexter is LIVE at ${PORT}`));
   });
 })
